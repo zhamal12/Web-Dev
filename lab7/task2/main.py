@@ -1,13 +1,27 @@
-from models import Product
-from models import Drink
-from models import Cake
+# main.py
+from models import Vehicle, Car, Motorcycle
 
-cake = Cake(1, "Napoleon", 15.0, 3, 10.0, True)
-drink = Drink(2, "Pepsi", 3.0, 5, 500, True)
+def main():
+    # Create objects
+    v1 = Vehicle("Toyota", "Corolla", 2020)
+    c1 = Car("BMW", "X5", 2022, 4)
+    m1 = Motorcycle("Yamaha", "R1", 2021, 1000)
 
-products = [cake, drink]
+    vehicles = [v1, c1, m1]
 
-for product in products:
-    print(product)
-    product.consume()
-    print("----------------")
+    for v in vehicles:
+        print(v)  
+        print(v.start_engine())  
+        print(v.stop_engine())
+
+        # Call child-specific methods safely
+        if isinstance(v, Car):
+            print(v.honk())
+        elif isinstance(v, Motorcycle):
+            print(v.wheelie())
+
+        print("-" * 40)
+
+
+if __name__ == "__main__":
+    main()
